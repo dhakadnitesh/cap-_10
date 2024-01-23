@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>calculator</title>
+    <style>
+        #container{
+            width: 50%;
+            height: auto;
+            border: 2px solid gray;
+            border-radius: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <center>
+    <div id="container">
+        <center>
+    <h2>Mini calculator</h2>
+
+
+    <input type="number" id="input1">
+    <input type="number" id="input2">
+    <hr>
+    <hr>
+
+    <button onclick="add()">ADD</button>
+    <button onclick="sub()">SUBTRACT</button>
+    <button onclick="multi()">MULTIPLY</button>
+    <button onclick="div()">DIVISION</button>
+    </center>
+    </div>
+    </center>
+</body>
+
+</html>
+<script>
+    function add(){
+        var num1 = parseFloat(document.getElementById("input1").value)
+        var num2 = parseFloat(document.getElementById("input2").value)
+        alert("result :- " +(num1+num2))
+
+
+    }
+
+    function sub(){
+        var num1 = document.getElementById("input1").value;
+        var num2 = document.getElementById("input2").value;
+        alert("result :- " + (num1-num2))
+
+
+    }
+    function multi(){
+        var num1 = document.getElementById("input1").value;
+        var num2 = document.getElementById("input2").value;
+        alert("result :- " + (num1 * num2))
+
+
+    }
+    function div(){
+        var num1 = document.getElementById("input1").value;
+        var num2 = document.getElementById("input2").value;
+        alert("result :- " + (num1 / num2))
+
+
+    }
+</script>
