@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Throw Dice</title>
+<style>
+  .dice {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border: 2px solid black;
+    border-radius: 10px;
+    margin-right: 20px;
+    text-align: center;
+    line-height: 50px;
+    font-size: 24px;
+    font-weight: bold;
+  }
+  #winner {
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  #winner div {
+    display: inline-block;
+    margin-right: 20px;
+  }
+  #roll {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+
+<div id="member-1" class="dice"></div>
+<div id="member-2" class="dice"></div>
+<div id="member-3" class="dice"></div>
+
+<button id="roll">ROLL THE DICE</button>
+
+<div id="winner"></div>
+
+<script>
+  document.getElementById('roll').addEventListener('click', function() {
+    var member1 = Math.floor(Math.random() * 6) + 1;
+    var member2 = Math.floor(Math.random() * 6) + 1;
+    var member3 = Math.floor(Math.random() * 6) + 1;
+    
+    document.getElementById('member-1').innerText = member1;
+    document.getElementById('member-2').innerText = member2;
+    document.getElementById('member-3').innerText = member3;
+    
+    var winnerDiv = document.getElementById('winner');
+    var winner;
+    
+    if (member1 > member2 && member1 > member3) {
+      winner = "Member A";
+      document.getElementById('member-1').style.backgroundColor = "green";
+      document.getElementById('member-2').style.backgroundColor = "red";
+      document.getElementById('member-3').style.backgroundColor = "red";
+    } else if (member2 > member1 && member2 > member3) {
+      winner = "Member B";
+      document.getElementById('member-2').style.backgroundColor = "green";
+      document.getElementById('member-1').style.backgroundColor = "red";
+      document.getElementById('member-3').style.backgroundColor = "red";
+    } else if (member3 > member1 && member3 > member2) {
+      winner = "Member C";
+      document.getElementById('member-3').style.backgroundColor = "green";
+      document.getElementById('member-1').style.backgroundColor = "red";
+      document.getElementById('member-2').style.backgroundColor = "red";
+    } else if (member1 === member2 && member1 === member3) {
+      winner = "It's a draw among all members";
+      document.getElementById('member-1').style.backgroundColor = "blue";
+      document.getElementById('member-2').style.backgroundColor = "blue";
+      document.getElementById('member-3').style.backgroundColor = "blue";
+    } else if (member1 === member2) {
+      if (member1 > member3) {
+        winner = "It's a draw between Member A and Member B";
+        document.getElementById('member-1').style.backgroundColor = "blue";
+        document.getElementById('member-2').style.backgroundColor = "blue";
+        document.getElementById('member-3').style.backgroundColor = "red";
+      } else {
+        winner = "Member C";
+        document.getElementById('member-3').style.backgroundColor = "green";
+        document.getElementById('member-1').style.backgroundColor = "red";
+        document.getElementById('member-2').style.backgroundColor = "blue";
+      }
+    } else if (member1 === member3) {
+      if (member1 > member2) {
+        winner = "It's a draw between Member A and Member C";
+        document.getElementById('member-1').style.backgroundColor = "blue";
+        document.getElementById('member-3').style.backgroundColor = "blue";
+        document.getElementById('member-2').style.backgroundColor = "red";
+      } else {
+        winner = "Member B";
+        document.getElementById('member-2').style.backgroundColor = "green";
+        document.getElementById('member-1').style.backgroundColor = "blue";
+        document.getElementById('member-3').style.backgroundColor = "red";
+      }
+    } else if (member2 === member3) {
+      if (member2 > member1) {
+        winner = "It's a draw between Member B and Member C";
+        document.getElementById('member-2').style.backgroundColor = "blue";
+        document.getElementById('member-3').style.backgroundColor = "blue";
+        document.getElementById('member-1').style.backgroundColor = "red";
+      } else {
+        winner = "Member A";
+        document.getElementById('member-1').style.backgroundColor = "green";
+        document.getElementById('member-2').style.backgroundColor = "blue";
+        document.getElementById('member-3').style.backgroundColor = "red";
+      }
+    }
+    
+    winnerDiv.innerHTML = "<div>Winner: " + winner + "</div>";
+  });
+</script>
+
+</body>
+</html>
