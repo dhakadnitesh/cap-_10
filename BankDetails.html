@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BankDetails</title>
+</head>
+
+<body>
+    <h1>Bank</h1>
+
+</body>
+
+</html>
+<script>
+
+
+function BankAccount(accountNumber, name, type, balance) {
+        this.accountNumber = accountNumber;
+        this.name = name;
+        this.type = type;
+        this.balance = balance
+
+
+
+        this.Deposit = function (amount) {
+            console.log(`Deposited ${amount} in this account ${this.accountNumber}`)
+        }
+
+
+        this.Withdraw = function (amount) {
+            if (this.balance > amount) {
+                console.log(`Withdraw ${amount} from this account ${this.accountNumber}`)
+
+            }
+            else {
+                console.log("Insufficient balance cannot Withdraw")
+
+            }
+        }
+
+
+        this.Checkbalance = function () {
+            console.log(`${this.balance} in this account :-- ${this.accountNumber}`)
+        }
+
+
+        this.InActive = function () {
+            if (this.balance > 0) {
+                console.log("Active")
+            }
+            else {
+                console.log("Not Active")
+            }
+        }
+
+         this.getTotalBalance = function(accounts) {
+        let totalBalance = 0;
+        for (let account of accounts) {
+            if (account.InActive()) {
+                totalBalance += account.balance;
+            }
+        }
+        return totalBalance;
+    }
+
+
+
+    }
+
+    var A = new BankAccount(1234567891, "Nitesh", "saving", 89345)
+    console.log(A)
+    A.Deposit(1234)
+    A.Withdraw(1234)
+    A.Checkbalance()
+    A.InActive()
+
+
+
+    var A2 = new BankAccount(1234567891, "Ritesh", "current", 10987000)
+    console.log(A2)
+    A2.Deposit(1234)
+    A2.Withdraw(1234)
+    A2.Checkbalance()
+    A2.InActive()
+
+    const allAccounts = [A, A2];
+    console.log("Total balance of all active accounts:", getTotalBalance(allAccounts));
+
+    </script>
+    
