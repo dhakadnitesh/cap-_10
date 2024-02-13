@@ -17,76 +17,92 @@
 
 
 function BankAccount(accountNumber, name, type, balance) {
-        this.accountNumber = accountNumber;
-        this.name = name;
-        this.type = type;
-        this.balance = balance
+  this.accountNumber = accountNumber;
+  this.name = name;
+  this.type = type;
+  this.balance = balance;
 
+  this.deposit = function (amount) {
+    if (amount > 0 && this.balance>0 ) {
+      this.balance += amount;
 
-
-        this.Deposit = function (amount) {
-            console.log(`Deposited ${amount} in this account ${this.accountNumber}`)
-        }
-
-
-        this.Withdraw = function (amount) {
-            if (this.balance > amount) {
-                console.log(`Withdraw ${amount} from this account ${this.accountNumber}`)
-
-            }
-            else {
-                console.log("Insufficient balance cannot Withdraw")
-
-            }
-        }
-
-
-        this.Checkbalance = function () {
-            console.log(`${this.balance} in this account :-- ${this.accountNumber}`)
-        }
-
-
-        this.InActive = function () {
-            if (this.balance > 0) {
-                console.log("Active")
-            }
-            else {
-                console.log("Not Active")
-            }
-        }
-
-         this.getTotalBalance = function(accounts) {
-        let totalBalance = 0;
-        for (let account of accounts) {
-            if (account.InActive()) {
-                totalBalance += account.balance;
-            }
-        }
-        return totalBalance;
+      console.log(
+        `deposited ${amount} rupees into this account ${this.accountNumber} `,
+      );
+    } else {
+      console.log("Invalid deposit amount.");
     }
+  };
+  // <---------------->
 
+  this.withdraw = function (amount) {
+    if (this.balance > amount) {
+      this.balance -= amount;
 
-
+      console.log(
+        `Withdraw ${amount} rupees from this account ${this.accountNumber}`,
+      );
+    } else {
+      console.log("Insufficient funds or invalid withdrawal amount.");
     }
-
-    var A = new BankAccount(1234567891, "Nitesh", "saving", 89345)
-    console.log(A)
-    A.Deposit(1234)
-    A.Withdraw(1234)
-    A.Checkbalance()
-    A.InActive()
+  };
+  // <---------------->
 
 
+  this.checkBalance = function () {
+    console.log(
+      `${this.balance} rupees available in this account:-- ${this.accountNumber}`,
+    );
+  };
+  // <---------------->
 
-    var A2 = new BankAccount(1234567891, "Ritesh", "current", 10987000)
-    console.log(A2)
-    A2.Deposit(1234)
-    A2.Withdraw(1234)
-    A2.Checkbalance()
-    A2.InActive()
 
-    const allAccounts = [A, A2];
-    console.log("Total balance of all active accounts:", getTotalBalance(allAccounts));
+  this.isActive = function () {
+   return this.balance>0
+  };}
 
-    </script>
-    
+
+  // <---------------->
+
+  function getTotalBalance(accounts){
+    var total = 0
+    for(let i =0;i<accounts.length;i++){
+      if(accounts[i].isActive()){
+        total += accounts[i].balance
+      }
+    }
+    return total
+  }
+
+  
+
+
+
+
+
+var account1 = new BankAccount(1232457689, "Nitesh", "Saving",120);
+const account2 = new BankAccount(987654, "Jane Smith", "Checking", 500);
+
+// console.log(account1)
+// console.log(account2)
+
+account1.deposit(30);
+account1.withdraw(35);
+account1.checkBalance();
+console.log("Account 1 is Active:-",account1.isActive())
+console.log()
+console.log()
+
+
+account2.deposit(300);
+account2.withdraw(350);
+account2.checkBalance();
+
+console.log("Account 2 is Active:-",account2.isActive())
+
+
+ var accounts = [account1, account2];
+ console.log("Total balance of all active accounts:", getTotalBalance(accounts))
+
+
+</script>
