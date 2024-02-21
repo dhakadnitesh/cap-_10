@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,7 @@
             font-family: Arial, sans-serif;
             text-align: center;
         }
+
         div {
             border: 2px solid whitesmoke;
             border-radius: 10px;
@@ -33,6 +35,7 @@
         }
     </style>
 </head>
+
 <body>
     <div>
         <h1><span id="hours">00</span>:<span id="minutes">00</span>:<span id="seconds">00</span></h1>
@@ -52,7 +55,13 @@
         var timer;
 
         function startTimer() {
-            timer = setInterval(function(){
+            if (timer) {
+                clearInterval(timer)
+            }
+
+
+
+            timer = setInterval(function () {
                 if (seconds === 0) {
                     if (minutes === 0) {
                         if (hours === 0) {
@@ -76,18 +85,18 @@
             }, 1000);
         }
 
-        document.getElementById("startBtn").addEventListener("click", function() {
+        document.getElementById("startBtn").addEventListener("click", function () {
             hours = parseInt(document.getElementById("inputHours").value) || 0;
             minutes = parseInt(document.getElementById("inputMinutes").value) || 0;
             seconds = parseInt(document.getElementById("inputSeconds").value) || 0;
             startTimer();
         });
 
-        document.getElementById("pauseBtn").addEventListener("click", function() {
+        document.getElementById("pauseBtn").addEventListener("click", function () {
             clearInterval(timer);
         });
 
-        document.getElementById("resetBtn").addEventListener("click", function() {
+        document.getElementById("resetBtn").addEventListener("click", function () {
             clearInterval(timer);
             hours = 0;
             minutes = 0;
@@ -98,39 +107,5 @@
         });
     </script>
 </body>
+
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
