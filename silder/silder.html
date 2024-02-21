@@ -93,6 +93,10 @@
     var id;
 
     function settime() {
+
+    
+
+
         if (time < image.length - 1) {
             time++
         }
@@ -106,6 +110,10 @@
 
 
     document.getElementById("btn").addEventListener("click", function () {
+
+        if(id){
+        clearInterval(id)
+     }
 
         id = setInterval(settime, 2000)
 
