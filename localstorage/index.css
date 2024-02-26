@@ -1,0 +1,72 @@
+#div1{
+    border: 2px solid red;
+    width: 300px;
+    padding: 10px;
+
+    font-size: 25px;
+    border-radius: 10px;
+    background-color: aliceblue;
+}
+
+#int1{
+    font-size: 20px;
+}
+
+
+#int2{
+    font-size: 20px;
+}
+
+#int3{
+    font-size: 25px;
+    border-radius: 4px;
+    background-color: aqua;
+}
+
+#int3:hover{
+    cursor: pointer;
+}
+
+#div2{
+    margin-left: 150px;
+}
+
+#btn{
+    font-size: 25px;
+    background-color: green;
+    border-radius: 6px;
+}
+#btn:hover{
+    cursor: pointer;
+}
+
+
+
+
+table {
+    border-collapse: collapse; 
+    width: 100%; 
+    font-size: 25px;
+    border-radius: 10px;
+    background-color: grey;
+    border: 1px solid red; 
+}
+
+th {
+    background-color: darkgrey; 
+    color: white; 
+    padding: 10px; 
+}
+
+td {
+    padding: 8px; 
+    text-align: center; 
+}
+
+tr:hover {
+    background-color: lightgrey; 
+}
+
+
+
+
