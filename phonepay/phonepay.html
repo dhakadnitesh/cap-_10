@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment app</title>
+    <style>
+        body {
+            background-color: #f8f8f8;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        #container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            color: #4CAF50;
+        }
+
+        #btn {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 5px;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+
+        #btn:hover {
+            background-color: #45a049;
+        }
+
+        #find {
+            margin-top: 15px;
+            font-size: 18px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="div">
+        <h1>Payment System</h1>
+       <center> <button id="btn">Click Here</button></center>
+        <div id="find">Payment status will be displayed here</div>
+    </div>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+<script>
+    function getmoney(){
+        return new Promise(function(resolve,reject){
+           setTimeout(function(){
+            var Issucess = Math.random() < 0.20;
+            console.log(Issucess)
+            if(Issucess){
+                resolve()
+            }
+            else{
+                reject()
+            }
+           },3000)
+
+        })
+    }
+
+    function ShowProcessing(){
+        document.getElementById("find").innerText = "Payment in Processing please wait for some time......"
+    }
+
+    function Showsucess(){
+        document.getElementById("find").innerText = "Payment sucessfull!!" + "  " +" Id:- Nb23mNdf23!@"
+        document.body.style.color = "green"
+
+    }
+
+    function Showfail(){
+        document.getElementById("find").innerText = "Payment Failed.." + "  " +" Id:- Nb23mNdf23!@"
+        document.body.style.color = "red"
+
+
+
+        
+    }
+
+    function Handling(){
+        ShowProcessing()
+        getmoney().then(function(){
+            Showsucess()
+        })
+        .catch(function(){
+            Showfail()
+        })
+    }
+    
+
+    document.getElementById("btn").addEventListener("click",function(){
+        event.preventDefault()
+        Handling()
+    })
+</script>
