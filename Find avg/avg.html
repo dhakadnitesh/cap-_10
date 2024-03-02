@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find avg</title>
+</head>
+
+<body>
+    <h1>Find Avg</h1>
+
+</body>
+
+</html>
+<script>
+
+    var arr = [2,4,8,6];
+
+    const sumavg = () => {
+
+        if (arr.length == 0) {
+            return 0
+        }
+        else {
+
+            let bag = 0;
+            for (let i = 0; i < arr.length; i++) {
+                bag += arr[i]
+            }
+              console.log(bag) //For sum
+
+            return (bag / arr.length) // For avg
+
+        }
+
+    }
+
+    console.log(sumavg())
+
+
+
+
+</script>
