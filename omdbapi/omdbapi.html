@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Omdbapi Movies</title>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+            background-color: aliceblue;
+        }
+
+        #div1 {
+            margin-top: 2%;
+            margin-left: 5%;
+        }
+
+        #int1 {
+            width: 40%;
+            font-size: 25px;
+            border-radius: 6px;
+        }
+
+
+        #container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+    width: 200px;
+    display: inline-block;
+}
+
+.img {
+    width: 70%;
+    height: auto;
+    margin: 40px;
+    border-radius: 10px;
+}
+
+.p,  .p2, .p3 {
+    margin: 5px 0;
+    /* font-size: 16px; */
+    text-align: center;
+}
+
+
+.p {
+    color: #888;
+    /* margin-left: 10%; */
+    font-size: 25px;
+}
+
+.p2 {
+    /* color: #888; */
+    margin-left: 25%;
+    font-size: 25px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+}
+
+.p3 {
+    color: #444;
+    margin-left: 10%;
+    font-size: 25px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+
+}
+
+
+    </style>
+</head>
+
+<body>
+    <div id="div1">
+        <input type="text" placeholder="Search  Here Marvel Movies...." id="int1">
+
+    </div>
+
+    <div id="container"></div>
+
+</body>
+
+</html>
+<script>
+
+    let int1 = document.getElementById("int1")
+    int1.addEventListener("input", function () {
+
+        debounce(Fetchdata, 1000)
+    })
+
+    let timer;
+
+    function debounce(func, delay) {
+        if (timer) {
+            clearInterval(timer)
+        }
+
+        timer = setTimeout(() => {
+            func()
+        }, delay)
+
+    }
+
+
+
+    let url = `https://www.omdbapi.com/?apikey=356bdccd&`
+
+    const Fetchdata = async () => {
+        let int2 = int1.value;
+        console.log(int2)
+
+        try {
+            let res = await fetch(`${url}s=${int2}&t=${int2}`)
+            let data = await res.json();
+            let data2 = data.Search
+            console.log(data2)
+
+            Displaydata(data2)
+
+        } catch (error) {
+
+            console.log(error)
+
+        }
+
+
+    }
+
+    let div = document.getElementById("container")
+
+    const Displaydata = (data2) => {
+
+        data2.forEach((ele) => {
+            let card = document.createElement("div")
+
+            let img = document.createElement("img")
+            let p = document.createElement("p")
+            let p2 = document.createElement("p2")
+            let p3 = document.createElement("p3")
+
+            img.src = ele.Poster
+            img.className ="img"
+            p.innerText = ele.Title
+            p.className ="p"
+            p2.innerText = ele.Year
+            p2.className ="p2"
+            p3.innerText = ele.imdbID
+            p3.className ="p3"
+
+
+            card.append(img,p,p2,p3)
+            div.append(card)
+
+
+       })
+
+
+
+    }
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
