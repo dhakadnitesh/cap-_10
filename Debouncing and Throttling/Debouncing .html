@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debouncing</title>
+    <style>
+        body{
+            padding: 0;
+            margin: 0;
+            background-color: black;
+        }
+
+        #div1{
+            margin: 20px;
+        }
+        #int1{
+            font-size: 25px;
+            width: 35%;
+            border-radius: 10px;
+            border: none;
+            height: 40px;
+            margin-left: 5px;
+            padding-left: 5px;
+            
+        }
+
+        #div2{
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(4, 1fr);
+            gap: 20px;
+            margin: 20px;
+            text-align: center;
+        }
+
+        #div2:hover{
+            cursor: pointer;
+        }
+
+        .img{
+            width: 70%;
+            border-radius: 6px;
+            transition: transform 0.7s ease;
+        }
+
+        .img:hover{
+            transform: scale(0.8);
+
+        }
+
+        .h3 {
+            color: white;
+        }
+
+        .p1 {
+            font-size: 20px;
+            margin: 10px;
+            color: white;
+        }
+        .p2 {
+            font-size: 20px;
+            margin: 10px;
+            color: white;
+
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="div1">
+        <input type="text" id="int1" placeholder="Search Movies.......">
+    </div>
+    <div id="div2"></div>
+    
+</body>
+</html>
+<script>
+
+    let int1 = document.getElementById("int1")
+    int1.addEventListener("input",function(){
+        debounce(fetchdata,1000)
+    })
+
+
+    let timer;
+
+    function debounce(func,delay){
+        if(timer){
+            clearTimeout(timer)
+        }
+
+        timer=setTimeout(()=>{
+            func()
+        },delay)
+    }
+
+    let url = `https://www.omdbapi.com/?apikey=356bdccd&`
+
+
+   async function fetchdata(){
+        let int2 = int1.value;
+        console.log(int2)
+
+        try {
+            let res = await fetch(`${url}s=${int2}&t=${int2}`)
+            let data = await res.json();
+            let data1 = data.Search
+            console.log(data.Search)
+
+            displaydata(data1)
+            
+        } catch (error) {
+            console.log(error)
+            
+        }
+    }
+
+
+  let div = document.getElementById("div2")
+    const displaydata = (data1)=>{
+
+        data1.forEach((ele)=>{
+            let card = document.createElement("div")
+            card.className = "card"
+            let img = document.createElement("img")
+            let h3 = document.createElement("h3")
+            let p1 = document.createElement("p1")
+            let p2 = document.createElement("p2")
+
+
+            img.src = ele.Poster
+            img.className ="img"
+            h3.innerText = ele.Title
+            h3.className = "h3"
+            p1.innerText = ele.Type
+            p1.className = "p1"
+            p2.innerText = ele.imdbID
+            p2.className ="p2"
+
+
+            card.append(img,h3,p1,p2)
+            div.append(card)
+
+
+        })
+
+    }
+
+</script>

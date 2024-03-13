@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Throttling</title>
+    <style>
+        body{
+            padding: 0;
+            margin: 0;
+            background-color: black;
+        }
+
+        #div2{
+            margin: 20px;
+        }
+        #int1{
+            width: 60%;
+            padding: 10px;
+            font-size: 20px;
+            border: none;
+            padding-left: 5px;
+        }
+
+        #div1{
+            display: grid;
+            grid-template-columns: repeat(4 ,1fr);
+            grid-template-rows: repeat(4 ,1fr);
+            gap: 20px;
+            text-align: center;
+        }
+        #div1:hover{
+            cursor: pointer;
+        }
+
+        .img{
+            width: 70%;
+            border-radius: 6px;
+            transition: transform 0.7s ease;
+        }
+
+        .img:hover{
+            transform: scale(0.8);
+        }
+
+
+        .h3{
+            color: white;
+        }
+
+        .p{
+            color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .p1{
+            color: white;
+            font-family: sans-serif;
+        }
+
+    </style>
+</head>
+<body>
+
+
+    <div id="div2">
+        <input type="text" id="int1" placeholder="Search Meal here....">
+    </div>
+
+    <div id="div1"></div>
+
+    
+</body>
+</html>
+<script>
+
+    let int1 = document.getElementById("int1")
+    int1.addEventListener("input",function(){
+        Throttline(fetchdata,2000)
+    })
+
+    let last = 0;
+    
+    function Throttline(func,delay){
+        let now = new Date().getTime()
+        if(now - last < delay) return;
+        console.log("hello")
+        last = now
+        return func()
+    }
+
+  
+
+let url = `https://www.themealdb.com/api/json/v1/1/search.php?`
+
+   async function fetchdata(){
+    let int2 = int1.value;
+    console.log(int2)
+    try {
+
+        let res = await fetch(`${url}s=${int2}`)
+        let data = await res.json()
+        let data2 = data.meals
+        console.log(data.meals)
+
+        displaydata(data2)
+        
+    } catch (error) {
+        console.log(error)
+        
+    }
+
+   }
+
+
+
+   let div = document.getElementById("div1")
+   div.innerText=""
+
+
+   const displaydata =(data2)=>{
+
+    data2.forEach((ele)=>{
+        let card = document.createElement("div")
+        let img = document.createElement("img")
+        let h3 = document.createElement('h3')
+        let p = document.createElement("p") 
+        let p1 = document.createElement("p1")
+
+
+        card.className ="card"
+        img.src = ele.strMealThumb;
+        img.className = "img"
+        h3.innerText = ele.strMeal
+        h3.className="h3"
+        p.innerText = ele.strArea
+        p.className = "p"
+        p1.innerText = ele.idMeal
+        p1.className ="p1"
+
+        card.append(img,h3,p,p1)
+        div.append(card)
+    })
+
+   }
+
+    
+
+       
+</script>
