@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>JSX and Babel</title>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+
+
+        let root = ReactDOM.createRoot(document.getElementById("root"))
+
+
+        //   Simple JSX Element
+
+      let Component = ()=>{
+
+
+        let txt = "Seize the day"
+        let txt2 = "Seize the day 2"
+        let flag = true
+
+
+      return (<>
+        <p>{ flag ? txt : txt2}</p> 
+       </>)
+
+      }
+
+
+
+        root.render(<Component/>)
+
+
+
+
+
+    </script>
+</body>
+
+</html>
